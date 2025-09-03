@@ -125,6 +125,7 @@ img{
     .back-to-top a{display:inline-block; background:#fff; border:1px solid #cbd5e1; border-radius:999px; padding:8px 12px; text-decoration:none; color:#1f2473; box-shadow:0 6px 16px rgba(31,36,115,.12)}
   </style>
 </head>
+<div class="reading-progress" id="readingProgress" style="position:fixed; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--ink),#b3b8ff); transform-origin:0 50%; transform:scaleX(0); z-index:60"></div>
 <body>
   <header class="white-header">
     <div class="logo">
@@ -408,6 +409,13 @@ img{
 
 
   <script>
+      // Reading progress
+      const prog = document.getElementById('readingProgress');
+    document.addEventListener('scroll',()=>{
+      const h=document.documentElement; const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+      prog.style.transform=`scaleX(${Math.min(1,scrolled)})`;
+    },{passive:true});
+    
     // Menu toggle (same behavior as viewer/compare)
     const menu = document.getElementById('fullScreenMenu');
     const icon = document.getElementById('menuIcon');
