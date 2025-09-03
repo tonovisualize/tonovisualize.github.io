@@ -78,25 +78,26 @@
 <body>
   <div class="reading-progress" id="readingProgress" style="position:fixed; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--ink),#b3b8ff); transform-origin:0 50%; transform:scaleX(0); z-index:60"></div>
 
-  <!-- Header (borrowed from compare.html) -->
-  <header class="white-header">
-    <div class="logo">
-      <a href="../index.html"><img src="../images/logo.png" alt="Tono Logo"></a>
-      <div class="menu-icon" id="menuIcon" aria-label="Open menu" role="button" tabindex="0">
-        <span></span><span></span><span></span>
+  <body>
+    <!-- Header (same pattern as compare page) -->
+    <header class="white-header">
+      <div class="logo">
+        <a href="../index.html"><img src="../images/logo.png" alt="Tono Logo"></a>
       </div>
+      <div class="menu-icon" id="menuIcon"><span></span><span></span><span></span></div>
+    </header>
+  
+    <!-- Full Screen Menu -->
+    <div id="fullScreenMenu" class="full-screen-menu">
+      <nav>
+        <a href="/index.html">Home</a>
+        <a href="../pages/viewer.html">Eczema Visualizer</a>
+        <a href="../pages/learnmod2.html">Learn About Eczema</a>
+        <a href="../pages/resources.html">Resources</a>
+        <a href="../pages/about.html">About Us</a>
+        <a href="../pages/gallery2.html">Image Gallery</a>
+      </nav>
     </div>
-  </header>
-  <div id="fullScreenMenu" class="full-screen-menu" aria-hidden="true">
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../pages/viewer.html">Eczema Visualizer</a>
-      <a href="../pages/learnmod2.html">Learn About Eczema</a>
-      <a href="../pages/resources.html">Resources</a>
-      <a href="../pages/about.html">About Us</a>
-      <a href="../pages/gallery2.html">Image Gallery</a>
-    </nav>
-  </div>
 
   <!-- Breadcrumb -->
   <section class="breadcrumb" style="padding:10px 16px">
