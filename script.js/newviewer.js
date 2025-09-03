@@ -414,7 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
     state.region = pickDefaultRegionFor(state.type);
 
     // Reflect UI selections
-    setActiveRegion(state.region);
+    if (typeof setActiveRegion === 'function') {
+      setActiveRegion(state.region);
+    } else {
+      console.error('setActiveRegion function is not defined.');
+    }
     setActiveSeverity(state.severity);
     setActiveTone(state.tone);
 
