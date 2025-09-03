@@ -9,14 +9,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
      /* Back to top */
-     .back-to-top{position:fixed; right:16px; bottom:16px;}
+     .back-to-top {
+      position: fixed;
+      bottom: 20px;   /* adjust vertical distance from bottom */
+      right: 20px;    /* adjust horizontal distance from right */
+      z-index: 1000;  /* keeps it above background but not overlapping content */
+    }
+
     .back-to-top a{display:inline-block; background:#fff; border:1px solid #cbd5e1; border-radius:999px; padding:8px 12px; text-decoration:none; color:#1f2473; box-shadow:0 6px 16px rgba(31,36,115,.12)}
+   
+    .wrap{max-width:1100px; margin:24px auto 40px; padding:0 16px}
+    h1{font-size:28px; color:var(--ink); margin:8px 0 10px}
+    h2{color:var(--ink); margin:0 0 10px}
+    .lede{max-width:800px; line-height:1.65; color:#334155; margin:0 0 16px}
+
+    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #e5e7eb; margin-bottom:18px}
+    .muted{color:var(--muted)}
+
+    .grid{display:grid; gap:18px}
+    .grid.cols-2{grid-template-columns:1.1fr .9fr}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width: 980px){ .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} }
+
+    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #e5e7eb; margin-bottom:18px}
+    
   </style>
 </head>
 <body>
 <header class="white-header">
     <div class="logo">
-            <a href="../pages/gpthome.html">
+            <a href="../index.html">
             <img src="../images/logo.png" alt= "Tono Logo">
         </a>
         </div>
@@ -30,7 +52,7 @@
 <!-- Full Screen Menu -->
 <div id="fullScreenMenu" class="full-screen-menu">
   <nav>
-    <a href="../pages/gpthome.html">Home</a>
+    <a href="../index.html">Home</a>
     <a href="../pages/viewer.html">Eczema Visualizer</a>
     <a href="../pages/learnmod2.html">Learn About Eczema</a>
     <a href="../pages/resources.html">Resources</a>
@@ -39,12 +61,12 @@
   </nav>
 </div>
 
-  <!-- Breadcrumb -->
+  <!-- Breadcrumb -->                                                                                                                  
   <section class="breadcrumb" style="padding:10px 16px">
     <p style="margin:0; color:#475569">
       <a href="../index.html" style="color:#1f2473; font-weight:700; text-decoration:none">Home</a>
       <span style="opacity:.45"> › </span>
-      <span>Learn About Eczema</span>
+      <span>Eczema Visualizer</span>
     </p> 
   </section>
 
@@ -154,7 +176,8 @@
     </div>
   </div>
 </section>
-<section class="tab-section">
+<!-- Tabs (Condition info, Differential diagnosis) -->
+<section class="tab-section info-card">
   <div class="tab-buttons">
     <button class="tab-btn active" data-tab="about">About the Condition</button>
     <button class="tab-btn" data-tab="differential">Differential Diagnosis</button>
@@ -189,17 +212,20 @@
   </div>
 </section>
 
-<!-- Back to Top -->
-<div class="back-to-top">
-  <a href="#">Back to top &#x25B2;</a>
+
+   <!-- Disclaimer -->
+   <section  class="tab-section info-card">
+    <h2>Disclaimer</h2>
+    <p class="muted">This tool is for educational purposes. It supports—not replaces—clinical judgment. For medical concerns, consult a qualified healthcare provider.</p>
+  </section>
 </div>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-item">Lorem ipsum</div>
-  <div class="footer-item">Lorem ipsum</div>
-  <div class="footer-item">Lorem ipsum</div>
+<div class="back-to-top"><a href="#">Back to top ▲</a></div>
+
+<footer style="margin:40px auto; text-align:center; font-size:14px; color:#6b7280">
+  <p>© 2025 TONO — Naomi Clay - University of Toronto MScBMC program</p>
 </footer>
+
 
 <!--script>
   /* ------- TONO Compare: viewer → compare.html -------

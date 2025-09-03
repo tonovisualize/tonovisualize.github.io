@@ -55,7 +55,16 @@ window.eczemaContent= {
     ]
   },
   nummular: {
-    about: "Nummular eczema is characterized by coin-shaped lesions that are often itchy and scaly. It can occur after skin injury or in dry skin conditions.",
+    about: ` <p> Nummular eczema is characterized by coin-shaped lesions that are often itchy and scaly. It can occur after skin injury or in dry skin conditions.
+    <p><strong>Symptoms:</strong></p>
+    <ul>
+    <li>Round or oval-shaped patches of irritated skin</li>
+    <li>Itching, which can be severe</li>
+    <li>Redness and inflammation</li>
+    <li>Dry, scaly, or crusted skin</li>
+    <li>Blisters that may ooze or become crusty</li>
+  </ul>
+  `,
     differential: [
       "Tinea corporis",
       "Psoriasis",
@@ -106,7 +115,15 @@ window.eczemaContent= {
     ]
   },
   neuro: {
-    about: "Neurodermatitis is a localized form of eczema that results from chronic scratching or rubbing. It presents as thickened, leathery patches of skin.",
+    about: `<p> Neurodermatitis is a localized form of eczema that results from chronic scratching or rubbing. It presents as thickened, leathery patches of skin.
+    <p><strong>Symptoms:</strong></p>
+    <ul>
+    <li>Thickened, leathery skin (lichenification)</li>
+    <li>Intense itching, often worse at night</li>
+    <li>Well-defined, scaly patches</li>
+    <li>Commonly affects the neck, wrists, forearms, or ankles</li>
+  </ul>
+    `,
     differential: [
       "Psoriasis",
       "Lichen simplex chronicus",
