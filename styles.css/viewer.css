@@ -724,4 +724,61 @@ html {
   }
 }
 
+/* GENERAL: keep content off the edges on small screens */
+@media (max-width: 640px) {
+  .visualizer,
+  .tab-section { padding-left: 16px; padding-right: 16px; }
+
+  /* Image area: avoid odd gaps, ensure full-width image */
+  .image-area {
+    padding: 12px;
+    border-radius: 18px;
+  }
+  .image-area .main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Headings align left for readability */
+  .skin-tone h3,
+  .severity h3,
+  .region h3 {
+    margin: 0 0 8px 2px;
+    text-align: left;
+  }
+
+  /* SKIN TONE: keep swatches off edges & nicely spaced */
+  .skin-tone .swatches {
+    padding: 0 8px;           /* <-- key: adds inner gutter */
+    margin: 8px 0 16px;
+    gap: 14px;
+    justify-content: center;  /* centers the row */
+  }
+
+  /* SEVERITY: 2 above, 2 below */
+  .severity-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .severity-buttons .severity-btn { width: 100%; }
+
+  /* REGIONS: stack on small screens; adjust gap */
+  .region-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* Slightly larger phones / small tablets */
+@media (min-width: 641px) and (max-width: 900px) {
+  .skin-tone .swatches { gap: 12px; }
+  .severity-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
 

@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>TONO • Resources</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../styles.css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
     *{box-sizing:border-box}
     body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:#0f172a}
 
-    /* Header matches compare.html */
+    /* Header matches compare.html
     header.white-header{position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #e5e7eb}
     header.white-header .logo{display:flex; align-items:center; gap:10px; padding:10px 16px}
     header.white-header img{height:34px}
@@ -29,7 +30,7 @@
     .menu-icon span{display:block; height:2px; background:#111827; border-radius:2px}
     .full-screen-menu{position:fixed; inset:0; background:rgba(255,255,255,.98); display:none; align-items:center; justify-content:center}
     .full-screen-menu nav{display:grid; gap:18px; text-align:center}
-    .full-screen-menu a{color:#111827; font-weight:800; text-decoration:none}
+    .full-screen-menu a{color:#111827; font-weight:800; text-decoration:none}*/
 
     .wrap{max-width:1100px; margin:28px auto 40px; padding:0 16px}
     h1{font-size:26px; color:var(--ink); margin:8px 0 8px}
@@ -66,6 +67,12 @@
     .item .meta{font-size:12px; color:#6b7280}
     .item a{color:#1f2473; font-weight:700; text-decoration:none}
     .item a:hover{ text-decoration:underline }
+
+    .menu{
+      position:absolute; top:calc(100% + 6px); left:0; right:0; z-index:20;
+      background:#fff; border:1px solid #e5e7eb; border-radius:14px; box-shadow:var(--shadow);
+      padding:8px; max-height:280px; overflow:auto; display:none;
+    }
   </style>
 </head>
 <body>
@@ -205,5 +212,8 @@
     tagBtns.forEach(b=> b.addEventListener('click', ()=>{ const on=b.getAttribute('aria-pressed')==='true'; b.setAttribute('aria-pressed', String(!on)); applyFilters(); }));
 
   </script>
+
+<script src="../script.js/menu.js"></script>
+<script src="menu.js" defer></script>
 </body>
 </html>
