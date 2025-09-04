@@ -9,20 +9,7 @@
 
   /* Skin Tone Swatches */
 /* Swatches */
-.swatches {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 1rem 0;
-}
 
-.swatch {
-  width: 96px;
-  height: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid #ccc;
-}
 
 .swatch.light { background: #F7E7CE; }
 .swatch.olive { background: #D2A679; }
@@ -81,6 +68,12 @@
   .swatch.medium { background: #8B5C30; }
   .swatch.dark { background: #4B3621; }
   
+  /* keep tone row off the edges on phones */
+@media (max-width: 480px){
+  .skin-tone { padding-inline: 16px; }
+  .skin-tone .swatches{ justify-content: space-between; }
+}
+
   /* Gooey checkbox */
   .checkbox-wrapper-12 { position: relative; }
   .checkbox-wrapper-12 > svg { position: absolute; top: -130%; left: -170%; width: 110px; pointer-events: none; }
@@ -167,6 +160,45 @@
   background: #614ede;
   color: white;
 }
+
+/* make two buttons per row on phones so none hangs alone */
+@media (max-width: 480px){
+  .severity { padding-inline: 16px; }
+  .severity-buttons{
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  }
+  .severity-buttons .severity-btn{
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  /* Optional: do the same for Region */
+  .region { padding-inline:16px; }
+  .region-buttons{
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  }
+  .region-buttons .region-btn{
+    flex: 1 1 calc(50% - 6px);
+  }
+}
+.section-divider{
+  height:2px; background:#2f34a8; opacity:.65;
+  width:90%; max-width:600px; margin:24px auto;
+  border:none;
+}
+
+.descriptors{ width:90%; max-width:600px; margin:0 auto 8px; }
+.descriptors h3{ text-align:center; }
+
+.chip-list{
+  display:flex; flex-wrap:wrap; gap:12px;
+  justify-content:center;
+}
+.chip{
+  border:2px solid #614ede; color:#614ede; background:#fff;
+  border-radius:999px; padding:8px 14px; font-weight:700;
+  line-height:1; white-space:nowrap;
+}
+
 
 /* Visualizer Image */
 .image-area {

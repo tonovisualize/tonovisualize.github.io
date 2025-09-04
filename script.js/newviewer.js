@@ -60,6 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return `../images/eczema/${type}/${type}-${region}-${tone}-${severity}.jpg`;
   }
 
+  function renderDescriptors(type){
+    const list = DESCRIPTORS_BY_TYPE[type] || [];
+    const wrap = document.getElementById('descriptorChips');
+    if(!wrap) return;
+    wrap.innerHTML = list.map(txt => `<span class="chip">${txt}</span>`).join('');
+  }
+  renderDescriptors(state.type);
+  
   // -------------------------------------------------------------------
   // 3) DOM
   // -------------------------------------------------------------------

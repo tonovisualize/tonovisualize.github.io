@@ -133,3 +133,17 @@ window.eczemaContent= {
   },
 
 };
+
+// Descriptors shown by condition (edit as you like)
+const DESCRIPTORS_BY_TYPE = {
+  atopic: [
+    "itchiness","lichenification","dry skin",
+    "excoriation","hypopigmentation","bumps"
+  ],
+  contact: ["erythema","vesicles","itchiness","scaling"],
+  dyshidrotic: ["vesicles","itchiness","pain","peeling"],
+  neurodermatitis: ["lichenification","pruritus","plaques"],
+  nummular: ["coin-shaped plaques","crusting","exudate"],
+  seborrheic: ["greasy scale","erythema","dandruff"],
+  stasis: ["hemosiderin","edema","ulceration"]
+};
