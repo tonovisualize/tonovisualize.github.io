@@ -143,11 +143,11 @@
 }
 
 .region h3 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   text-align: center;
 }
 .severity h3 {
-  margin-top: 2rem;
+  margin-top: -1rem;
   text-align: center;
 }
 
