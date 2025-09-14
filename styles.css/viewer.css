@@ -161,9 +161,9 @@
   color: white;
 }
 
-/* make two buttons per row on phones so none hangs alone 
+/* make two buttons per row on phones so none hangs alone*/
 @media (max-width: 480px){
-  .severity-btn { padding-inline: 16px; }
+  .severity-btn { padding-inline: 10px; }
   .severity-buttons{
     display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
   }
