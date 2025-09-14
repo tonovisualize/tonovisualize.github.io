@@ -197,7 +197,7 @@
   }
 }
 
-  /* Optional: do the same for Region */
+  /* Optional: do the same for Region 
   .region { padding-inline:16px; }
   .region-buttons{
     display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
@@ -205,7 +205,7 @@
   .region-buttons .region-btn{
     flex: 1 1 calc(50% - 6px);
   }
-}
+}*/
 .section-divider{
   height:2px; background:#2f34a8; opacity:.65;
   width:90%; max-width:600px; margin:24px auto;
