@@ -172,36 +172,36 @@
   }*/
 
   /* NEW: keep region row off the edges on phones */
-/* Mobile: exactly 2 buttons per row, centered, no edge hugging */
-@media (max-width: 480px){
-
-  /* add a little side padding so nothing kisses the screen edge */
-  .severity, .region { padding-inline: 16px; }
-
-  /* --- Severity --- */
-  .severity-buttons{
+/* Force equal-width severity buttons on mobile */
+@media (max-width: 480px) {
+  .severity-buttons {
     display: grid;
-    grid-template-columns: repeat(2, max-content); /* 2 per row, sized to content */
-    gap: 12px 16px;                                /* row / column gaps */
-    justify-content: center;                       /* center the grid */
-  }
-  .severity-buttons .severity-btn{
-    white-space: nowrap;   /* keep pill shape */
-    flex: 0 0 auto;        /* ignore any previous flex rules */
-  }
-
-  /* --- Region (same idea if you want 2 per row) --- */
-  .region-buttons{
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    gap: 12px 16px;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 12px;
     justify-content: center;
   }
-  .region-buttons .region-btn{
-    white-space: nowrap;
-    flex: 0 0 auto;
+
+  .severity-buttons .severity-btn {
+    width: 100%;              /* take full column width */
+    padding: 0.75rem 0;        /* consistent height */
+    text-align: center;
+  }
+
+  /* Same for Region buttons if you want equal widths */
+  .region-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .region-buttons .region-btn {
+    width: 100%;
+    padding: 0.75rem 0;
+    text-align: center;
   }
 }
+
 
 
   /* Optional: do the same for Region 
