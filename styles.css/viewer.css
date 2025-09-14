@@ -161,15 +161,41 @@
   color: white;
 }
 
-/* make two buttons per row on phones so none hangs alone*/
+/* make two buttons per row on phones so none hangs alone
 @media (max-width: 480px){
-  .severity-btn { padding-inline: 10px; }
+  .severity-btn { padding-inline: 16px; }
   .severity-buttons{
     display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
   }
   .severity-buttons .severity-btn{
     flex: 1 1 calc(50% - 6px);
+  }*/
+
+  /* NEW: keep region row off the edges on phones */
+@media (max-width: 480px){
+  .severity-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center; /* keep centered like desktop */
   }
+
+  .severity-buttons .severity-btn {
+    flex: 0 0 auto;   /* don't stretch to full width */
+  }
+
+  /* Optional: same for Region */
+  .region-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .region-buttons .region-btn {
+    flex: 0 0 auto;
+  }
+}
 
   /* Optional: do the same for Region */
   .region { padding-inline:16px; }
