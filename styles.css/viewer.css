@@ -72,6 +72,8 @@
 @media (max-width: 480px){
   .skin-tone { padding-inline: 16px; }
   .skin-tone .swatches{ justify-content: space-between; }
+  .severity { padding-inline: 16px; }
+  .severity-buttons{ justify-content: space-between; }
 }
 
   /* Gooey checkbox */
