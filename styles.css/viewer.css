@@ -74,6 +74,8 @@
   .skin-tone .swatches{ justify-content: space-between; }
   .severity { padding-inline: 16px; }
   .severity-buttons{ justify-content: space-between; }
+  .region { padding-inline: 16px; }
+  .region-buttons{ justify-content: space-between; }
 }
 
   /* Gooey checkbox */
