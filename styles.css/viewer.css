@@ -68,11 +68,11 @@
   .swatch.medium { background: #8B5C30; }
   .swatch.dark { background: #4B3621; }
   
-  /* keep tone row off the edges on phones 
+  /* keep tone row off the edges on phones*/
 @media (max-width: 480px){
   .skin-tone { padding-inline: 16px; }
   .skin-tone .swatches{ justify-content: space-between; }
-}*/
+}
 
   /* Gooey checkbox */
   .checkbox-wrapper-12 { position: relative; }
