@@ -7,6 +7,57 @@
   <link rel="stylesheet" href="../styles.css/main.css">
   <link rel="stylesheet" href="../styles.css/viewer.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!--style>
+    :root{
+      --accent:#614ede; --accent-ink:#fff;
+      --bg:#f2f4fb; --ink:#0f172a; --muted:#6b7280;
+      --card:#fff; --border:#e5e7eb; --chip:#f9fafb;
+      --chip-ink:var(--ink); --chip-border:#e5e7eb;
+      --shadow:0 8px 24px rgba(31,36,115,.12);
+    }
+    html[data-theme="dark"]{
+      --bg:#0c1020; --ink:#e6e9f8; --muted:#a7add4;
+      --card:#12172a; --border:#2a3350;
+      --chip:#1a2240; --chip-ink:var(--ink); --chip-border:#2a3350;
+    }
+    html,body{ background:var(--bg); color:var(--ink); }
+
+    .theme-switch{ font-size:17px; position:relative; display:inline-block; width:3.5em; height:2em; }
+    .theme-switch input{ opacity:0; width:0; height:0; }
+    .theme-slider{ --background:var(--accent); position:absolute; inset:0; cursor:pointer; background:var(--background); transition:.5s; border-radius:30px; }
+    .theme-slider::before{ content:""; position:absolute; height:1.4em; width:1.4em; border-radius:50%; left:10%; bottom:15%; box-shadow:inset 8px -4px 0 0 #fff000; background:var(--background); transition:.5s; }
+    .theme-switch input:checked + .theme-slider{ background:#522ba7; }
+    .theme-switch input:checked + .theme-slider::before{ transform:translateX(100%); box-shadow:inset 15px -4px 0 15px #fff000; }
+    .severity-btn,.region-btn{ background:var(--card); color:var(--accent); border:2px solid var(--accent); }
+    .severity-btn.selected,.region-btn.selected{ background:var(--accent); color:var(--accent-ink); }
+    .dropdown-selected{ background:var(--card); color:var(--ink); border:2px solid var(--accent); }
+    .dropdown-options{ background:var(--card); border:2px solid var(--accent); }
+    .image-area{ background:var(--card); border:3px solid var(--accent); }
+    .tab-content,.card,footer{ background:var(--card); color:var(--ink); border-color:var(--border); }
+
+
+    </style-->
+    <!-- Prevent flash: load saved choice before paint -->
+    <!--script>
+    (function(){
+      var t = localStorage.getItem('tono-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      // If you want these pages to default to DARK, uncomment:
+      // else document.documentElement.setAttribute('data-theme','dark');
+    })();
+    </script-->
+    <!-- Back to top script -->
+  <script>
+    (function(){
+      const el = document.querySelector('.back-to-top');
+      if(!el) return;
+      const reveal = () => el.setAttribute('data-hidden', window.scrollY < 300 ? 'true' : 'false');
+      reveal();
+      window.addEventListener('scroll', reveal, { passive: true });
+    })();
+  </script>
+      
   <style>
      /* Back to top */
      .back-to-top {
@@ -23,7 +74,7 @@
     h2{color:var(--ink); margin:0 0 10px}
     .lede{max-width:800px; line-height:1.65; color:#334155; margin:0 0 16px}
 
-    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #e5e7eb; margin-bottom:18px}
+    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #536fa9; margin-bottom:18px}
     .muted{color:var(--muted)}
 
     .grid{display:grid; gap:18px}
@@ -31,23 +82,32 @@
     .grid.cols-3{grid-template-columns:repeat(3,1fr)}
     @media (max-width: 980px){ .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} }
 
-    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #e5e7eb; margin-bottom:18px}
-    
+    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid #e5e7eb; margin-bottom:18px} 
+
+
   </style>
 </head>
+<div class="reading-progress" id="readingProgress" style="position:fixed; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--ink),#b3b8ff); transform-origin:0 50%; transform:scaleX(0); z-index:60"></div>
 <body>
-<header class="white-header">
+  <div id="top"></div>
+  <header class="white-header">
     <div class="logo">
-            <a href="../index.html">
-            <img src="../images/logo.png" alt= "Tono Logo">
-        </a>
-        </div>
-  <div class="menu-icon" id="menuIcon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
+      <a href="../index.html"><img src="../images/logo.png" alt="Tono Logo"></a>
+    </div>
+  
+    <div class="controls">
+  
+      <div class="menu-icon" id="menuIcon">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <!-- Theme switch 
+    <label class="theme-switch" id="themeToggle" title="Toggle dark mode">
+      <input type="checkbox" aria-label="Toggle dark mode">
+      <span class="theme-slider"></span>
+    </label--->
+    
+  </header>
 
 <!-- Full Screen Menu -->
 <div id="fullScreenMenu" class="full-screen-menu">
@@ -103,36 +163,6 @@
   <div class="skin-tone">
     <h3>Select Skin Tone</h3>
     <div class="swatches" id="skinTones" role="radiogroup" aria-label="Skin tone">
-      <div class="swatch light" data-tone="light" role="radio" aria-checked="false">
-        <div class="checkbox-wrapper-12">
-          <div class="cbx">
-            <input type="checkbox" id="tone-light" aria-label="Light skin tone">
-            <label for="tone-light"></label>
-            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="swatch olive" data-tone="olive" role="radio" aria-checked="false">
-        <div class="checkbox-wrapper-12">
-          <div class="cbx">
-            <input type="checkbox" id="tone-olive" aria-label="Olive skin tone">
-            <label for="tone-olive"></label>
-            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="swatch medium" data-tone="medium" role="radio" aria-checked="false">
-        <div class="checkbox-wrapper-12">
-          <div class="cbx">
-            <input type="checkbox" id="tone-medium" aria-label="Medium skin tone">
-            <label for="tone-medium"></label>
-            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
-          </div>
-        </div>
-      </div>
-
       <div class="swatch dark" data-tone="dark" role="radio" aria-checked="false">
         <div class="checkbox-wrapper-12">
           <div class="cbx">
@@ -142,7 +172,37 @@
           </div>
         </div>
       </div>
-    </div>
+    
+      <div class="swatch medium" data-tone="medium" role="radio" aria-checked="false">
+        <div class="checkbox-wrapper-12">
+          <div class="cbx">
+            <input type="checkbox" id="tone-medium" aria-label="Medium skin tone">
+            <label for="tone-medium"></label>
+            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
+          </div>
+        </div>
+      </div>
+    
+      <div class="swatch olive" data-tone="olive" role="radio" aria-checked="false">
+        <div class="checkbox-wrapper-12">
+          <div class="cbx">
+            <input type="checkbox" id="tone-olive" aria-label="Olive skin tone">
+            <label for="tone-olive"></label>
+            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
+          </div>
+        </div>
+      </div>
+    
+      <div class="swatch light" data-tone="light" role="radio" aria-checked="false">
+        <div class="checkbox-wrapper-12">
+          <div class="cbx">
+            <input type="checkbox" id="tone-light" aria-label="Light skin tone">
+            <label for="tone-light"></label>
+            <svg fill="none" viewBox="0 0 15 14" height="14" width="15"><path d="M2 8.36364L6.23077 12L13 2"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>    
   </div>
 </section>
 
@@ -186,6 +246,7 @@
 
 
 <!-- Tabs (Condition info, Differential diagnosis) -->
+
 <section class="tab-section info-card">
   <div class="tab-buttons">
     <button class="tab-btn active" data-tab="about">About the Condition</button>
@@ -230,6 +291,18 @@
 </div>
 
 <!--div class="back-to-top"><a href="#">Back to top ▲</a></div-->
+<!-- add this anchor somewhere near the top of your page -->
+<div id="top"></div>
+
+<!-- Back to Top -->
+<div class="back-to-top" data-hidden="true">
+  <a href="#top" class="backtotop-btn" aria-label="Back to top">
+    <span class="label">Back to top</span>
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+      <path d="M7.41 14.59 12 10l4.59 4.59L18 13l-6-6-6 6z"></path>
+    </svg>
+  </a>
+</div>
 
 <footer style="margin:40px auto; text-align:center; font-size:14px; color:#6b7280">
   <p>© 2025 TONO — Naomi Clay - University of Toronto MScBMC program</p>
@@ -305,7 +378,24 @@
     });
   })();
   </script-->
-  
+  <script>
+    (() => {
+      const KEY='tono-theme', html=document.documentElement;
+      const apply=t=>{ t==='dark' ? html.setAttribute('data-theme','dark') : html.removeAttribute('data-theme'); };
+      const saved=localStorage.getItem(KEY);
+      if (saved) apply(saved);
+    
+      window.addEventListener('DOMContentLoaded', () => {
+        const cb=document.querySelector('#themeToggle input'); if(!cb) return;
+        cb.checked = (html.getAttribute('data-theme')==='dark');
+        cb.addEventListener('change', e=>{
+          const t = e.target.checked ? 'dark' : 'light';
+          apply(t); localStorage.setItem(KEY,t);
+        });
+      });
+    })();
+    </script>
+    
 <script src="../script.js/data.js"></script>
 <script src="../script.js/conditionContent.js"></script>
 <script src="../script.js/newviewer.js"></script>

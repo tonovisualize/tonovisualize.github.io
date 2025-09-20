@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     stasis: 'Stasis Dermatitis'
   };
 
-  // If data.js isn't present, these provide sensible fallbacks.
   const REGION_FALLBACK = {
     atopic: ['face-neck', 'flexural-fold-elbow'],
     contact: ['face', 'hand'],
@@ -49,25 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dyshidrotic: ['palms', 'soles']
   };
 
-  // Step 0: preferred default region when switching conditions
-  const DEFAULT_REGION = {
-    atopic: 'face-neck',
-    contact: 'flexural-fold-elbow',
-    dyshidrotic: 'palms',
-    neuro: 'neck',
-    nummular: 'legs',
-    seborrheic: 'scalp',
-    stasis: 'ankles'
-  };
-
-  // Small polyfill guard so CSS.escape doesn't crash older engines
-  if (typeof CSS === 'undefined' || typeof CSS.escape !== 'function') {
-    window.CSS = window.CSS || {};
-    CSS.escape = CSS.escape || function (sel) {
-      return String(sel).replace(/["\\]/g, '\\$&');
-    };
-  }
-
   const titleCase = (s) => (s || '').replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).trim();
   const prettyRegion = (r) => titleCase(r);
 
@@ -76,20 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof getImagePath === 'function') {
       return getImagePath(type, region, tone, severity);
     }
-    // Default path pattern (fallback)
+    // Default path pattern (matches prior convention)
     return `../images/eczema/${type}/${type}-${region}-${tone}-${severity}.jpg`;
   }
 
   function renderDescriptors(type){
-    try {
-      const list = (window.DESCRIPTORS_BY_TYPE && DESCRIPTORS_BY_TYPE[type]) || [];
-      const wrap = document.getElementById('descriptorChips');
-      if(!wrap) return;
-      wrap.innerHTML = list.map(txt => `<span class="chip">${txt}</span>`).join('');
-    } catch { /* no-op */ }
+    const list = DESCRIPTORS_BY_TYPE[type] || [];
+    const wrap = document.getElementById('descriptorChips');
+    if(!wrap) return;
+    wrap.innerHTML = list.map(txt => `<span class="chip">${txt}</span>`).join('');
   }
   renderDescriptors(state.type);
-
+  
   // -------------------------------------------------------------------
   // 3) DOM
   // -------------------------------------------------------------------
@@ -215,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------------
-  // 8) TYPE DROPDOWN  (robust + preselect valid region)
+  // 8) TYPE DROPDOWN
   // -------------------------------------------------------------------
   if (els.dropdown && els.dropdownSelected && els.dropdownOptions) {
     els.dropdownSelected.addEventListener('click', (e) => {
@@ -226,50 +204,25 @@ document.addEventListener('DOMContentLoaded', () => {
     els.dropdownOptions.addEventListener('click', (e) => {
       const opt = e.target.closest('[data-value]');
       if (!opt) return;
+      const rawVal = opt.getAttribute('data-value'); // may be 'neurodermatitis'
+      const norm   = normalizeType(rawVal);          // -> 'neuro'
 
-      // 1) Normalize the type
-      const rawVal = opt.getAttribute('data-value');   // e.g. 'neurodermatitis'
-      const norm   = normalizeType(rawVal);            // -> 'neuro'
 
-      // 2) Update label + state
+      // UI label + state
       els.dropdownSelected.textContent = TYPE_LABELS[norm] || titleCase(norm);
       els.dropdownSelected.setAttribute('data-value', rawVal);
+
       state.type = norm;
 
-      // 3) Rebuild the region buttons for this type
+      // Rebuild regions & keep selection only if still valid
       buildRegionsForType(norm);
-
-      // 4) Choose the next valid region
-      // Try to keep the current region if still available
-      let nextRegion = state.region;
-      const stillThere = nextRegion &&
-        els.regions.querySelector(`.region-btn[data-region="${CSS.escape(nextRegion)}"]`);
-
-      if (!stillThere) {
-        // Prefer a default if it exists *and* is present among the rebuilt buttons
-        const preferred = DEFAULT_REGION[norm] || '';
-        const preferredBtn = preferred &&
-          els.regions.querySelector(`.region-btn[data-region="${CSS.escape(preferred)}"]`);
-
-        // Otherwise fall back to the first available region button
-        const firstBtn = els.regions.querySelector('.region-btn');
-
-        nextRegion = (preferredBtn && preferredBtn.dataset.region)
-                  || (firstBtn && firstBtn.dataset.region)
-                  || '';
+      if (!els.regions.querySelector(`.region-btn[data-region="${state.region}"]`)) {
+        state.region = ''; // force user to pick a valid region for this type
       }
 
-      // 5) Reflect region selection in UI + state
-      els.regions.querySelectorAll('.region-btn').forEach(b => b.classList.remove('selected'));
-      if (nextRegion) {
-        const btn = els.regions.querySelector(`.region-btn[data-region="${CSS.escape(nextRegion)}"]`);
-        btn?.classList.add('selected');
-      }
-      state.region = nextRegion;
-
-      // 6) Update content + image, then close the dropdown
       updateConditionText(norm);
       updateImage();
+
       els.dropdown.classList.remove('active');
     });
 
@@ -282,13 +235,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // 9) TONES (treat fancy checkboxes as radios; no DOM reads for state)
   // -------------------------------------------------------------------
   function setActiveTone(tone) {
+    // Update state first
     state.tone = tone;
+
+    // Reflect in UI (checked + aria)
     els.tones.querySelectorAll('.swatch').forEach(sw => {
       const isMatch = sw.dataset.tone === tone;
       sw.classList.toggle('selected', isMatch);
       sw.setAttribute('aria-checked', String(isMatch));
       const input = sw.querySelector('input[type="checkbox"]');
-      if (input) input.checked = isMatch; // if present
+      if (input) input.checked = isMatch; // visually sync the gooey check
     });
   }
 
@@ -338,8 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------
   function updateImage() {
     const { type, region, tone, severity } = state;
-
-    // If required fields missing, show placeholder
+    // If required fields missing (e.g., user changed type -> region reset), show placeholder
     if (!type || !region || !tone || !severity) {
       if (els.img) els.img.src = '../images/eczema-images/placeholder.png';
       renderMeta();
@@ -384,9 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
     els.dropdownSelected.setAttribute('data-value', state.type === 'neuro' ? 'neurodermatitis' : state.type);
   }
 
-  // Regions for initial type
+  // Regions
   buildRegionsForType(state.type);
-  els.regions?.querySelector(`.region-btn[data-region="${CSS.escape(state.region)}"]`)?.classList.add('selected');
+  els.regions?.querySelector(`.region-btn[data-region="${state.region}"]`)?.classList.add('selected');
 
   // Tone & Severity pills
   setActiveTone(state.tone);
@@ -396,3 +351,4 @@ document.addEventListener('DOMContentLoaded', () => {
   updateConditionText(state.type);
   updateImage();
 });
+

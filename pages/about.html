@@ -1,104 +1,216 @@
-<!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tono Landing Page</title>
-  <link rel="stylesheet" href="../styles.css/about.css">
+  <meta charset="utf-8" />
+  <title>TONO • About Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../styles.css/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#1f2473;
+      --bg:#f2f4fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --radius:18px;
+      --shadow:0 8px 24px rgba(31,36,115,.12);
+    }
+    body{margin:0; font-family:Inter,system-ui; background:var(--bg); color:#0f172a}
 
+    /*header.white-header{position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #e5e7eb}
+    header.white-header .logo{display:flex; align-items:center; gap:10px; padding:10px 16px}
+    header.white-header img{height:34px}*/
+
+    .wrap{max-width:1000px; margin:32px auto; padding:0 16px}
+    h1{font-size:28px; color:var(--ink); margin:8px 0 16px}
+    h2{color:var(--ink); margin:16px 0 8px}
+    .lede{max-width:720px; line-height:1.65; color:#334155; margin:0 0 20px}
+
+    .panel{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px; border:1px solid #5536fa; margin-bottom:20px}
+    .muted{color:var(--muted)}
+
+    .team-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px; margin-top:16px}
+    .profile{background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:16px; text-align:center; box-shadow:0 4px 12px rgba(31,36,115,.08)}
+    .profile img{width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:10px; border:2px solid #eef2ff}
+    .profile h3{margin:6px 0 4px; color:var(--ink)}
+    .profile p{font-size:14px; color:#475569; margin:0}
+
+    .values{display:grid; gap:12px; margin-top:16px}
+    .value{background:#f9f9f9; border:1px solid #e5e7eb; border-radius:12px; padding:14px}
+    .value h3{margin:0 0 6px; color:var(--ink); font-size:16px}
+    .value p{margin:0; font-size:14px; color:#475569}
+
+    .links-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:16px}
+    .link-card{display:block; text-decoration:none; background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:20px; box-shadow:0 6px 16px rgba(31,36,115,.1); transition:transform .2s ease}
+    .link-card:hover{transform:translateY(-4px)}
+    .link-card h3{margin:0 0 8px; color:var(--ink)}
+    .link-card p{margin:0; font-size:14px; color:#475569}
+
+    footer{margin:40px auto; text-align:center; font-size:14px; color:#6b7280}
+     /* Back to top */
+     .back-to-top{position:fixed; right:16px; bottom:16px;}
+    .back-to-top a{display:inline-block; background:#fff; border:1px solid #cbd5e1; border-radius:999px; padding:8px 12px; text-decoration:none; color:#1f2473; box-shadow:0 6px 16px rgba(31,36,115,.12)}
+
+
+  </style>
 </head>
+<div class="reading-progress" id="readingProgress" style="position:fixed; inset:0 0 auto 0; height:4px; background:linear-gradient(90deg,var(--ink),#b3b8ff); transform-origin:0 50%; transform:scaleX(0); z-index:60"></div>
 <body>
+  <header class="white-header">
+    <div class="logo">
+            <a href="../index.html">
+            <img src="../images/logo.png" alt= "Tono Logo">
+        </a>
+        </div>
+    <div class="menu-icon" id="menuIcon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+  
+  <!-- Full Screen Menu -->
+  <div id="fullScreenMenu" class="full-screen-menu">
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="../pages/viewer.html">Eczema Visualizer</a>
+      <a href="../pages/learnmod2.html">Learn About Eczema</a>
+      <a href="../pages/resources.html">Resources</a>
+      <a href="../pages/about.html">About Us</a>
+      <a href="../pages/gallery2.html">Image Gallery</a>
+    </nav>
+  </div>
 
-    <header class="white-header">
-      <div class="logo">
-        <a href="../index.html">
-        <img src="../images/logo.png" alt= "Tono Logo">
-    </a>
-    </div>
-        </div>
-        <div class="menu-icon" id="menuIcon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </header>
-      
-      <!-- Full Screen Menu -->
-      <div id="fullScreenMenu" class="full-screen-menu">
-        <nav>
-          <a href="../index.html">Home</a>
-          <a href="../pages/viewer.html">Eczema Visualizer</a>
-          <a href="../pages/learnmod2.html">Learn About Eczema</a>
-          <a href="../pages/resources.html">Resources</a>
-          <a href="../pages/about.html">About Us</a>
-          <a href="../pages/gallery2.html">Image Gallery</a>
-        </nav>
+<section class="breadcrumb" style="padding:10px 16px">
+  <p style="margin:0; color:#475569">
+    <a href="../index.html" style="color:#1f2473; font-weight:700; text-decoration:none">Home</a>
+    <span style="opacity:.45"> › </span>
+    <span>About Us</span>
+  </p>
+</section>
+
+<div class="wrap">
+  <h1>About TONO</h1>
+  <p class="lede">TONO is a clinician-focused tool created to make eczema more visible across all skin tones. Traditional dermatology references often underrepresent patients with darker skin, leading to disparities in recognition and care. TONO was built to close that gap through clear, consistent, medically accurate visuals and interactive learning modules.</p>
+
+  <div class="panel">
+    <h2>Why TONO Matters</h2>
+    <p class="muted">Eczema presents differently across skin tones. On darker skin, erythema may appear purple or gray instead of red, and post-inflammatory hyperpigmentation is more frequent. Without inclusive resources, clinicians risk underdiagnosis or misdiagnosis. TONO ensures that every patient is represented, helping to improve equity in dermatological care.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Our Mission</h2>
+    <p class="muted">To empower healthcare providers with inclusive dermatological references so they can recognize and treat eczema accurately in every patient, regardless of skin tone.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Our Values</h2>
+    <div class="values">
+      <div class="value">
+        <h3>Representation</h3>
+        <p>Highlight the full spectrum of skin tones in dermatology education.</p>
       </div>
-      
-<section class="breadcrumb">
-    <p><a href="../index.html">
-      <img src="../images/home-icon.png" alt="Home Icon" class="home-icon"></a> > About Us
-    </p>
-  </section>
-  
-  <section class="about-section">
-    <h2>About Us</h2>
-  
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Sed vero quas aut repudiandae magni 
-        est magni repellat id odio repellendus ut doloremque voluptatem et reiciendis omnis. Aut odio fugit sit quisquam iure nam sequi illum. Ex optio eius et sint
-         dolorem eos sint quas ab rerum earum vel voluptas nihil qui itaque quasi et voluptatem repellat. Rem molestiae voluptate ut autem impedit ut ducimus voluptatem 
-         aut velit debitis ea voluptates quia ea laudantium distinctio? A quia omnis ut ipsam voluptatibus et obcaecati suscipit et consequuntur enim sit nobis exercitationem.</p>
-  
-    <div class="about-buttons">
-      <a href="learn.html" class="main-btn">Learn More About Eczema</a>
-      <a href="viewer.html" class="main-btn">Go to Eczema Visualizer</a>
+      <div class="value">
+        <h3>Accessibility</h3>
+        <p>Design visuals and interfaces that are intuitive and clinician-friendly.</p>
+      </div>
+      <div class="value">
+        <h3>Accuracy</h3>
+        <p>Use evidence-based, peer-reviewed sources to guide every image and description.</p>
+      </div>
     </div>
-  
-    <div class="team-cards">
-      <div class="team-card fade-in">
-        <img src="../images/me.png" alt="Team Member 1">
-        <h3>Naomi Clay Rodríguez</h3>
-        <p class="team-title">Project Developer</p>
+  </div>
+
+  <div class="panel">
+    <h2>Explore TONO</h2>
+    <div class="links-grid">
+      <a href="../pages/viewer.html" class="link-card">
+        <h3>Eczema Visualizer</h3>
+        <p>Browse eczema images by type, region, tone, and severity.</p>
+      </a>
+      <a href="../pages/compare.html" class="link-card">
+        <h3>Comparison Tool</h3>
+        <p>Directly compare eczema across different skin tones and severities.</p>
+      </a>
+      <a href="../learn.html" class="link-card">
+        <h3>Learn About Eczema</h3>
+        <p>Read about eczema and its causes.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Meet the Team</h2>
+    <div class="team-grid">
+      <div class="profile">
+        <img src="../images/about/Naomi.jpg" alt="Naomi Clay">
+        <h3>Naomi Clay</h3>
+        <p>BA, MScBMC</p>
+        <h4>Project Developer</h4>
         <p>Researched, Designed, Developed, and Produced the project.</p>
         <a href="https://www.claybiovis.com" class="team-link">See Website</a>
+
       </div>
-  
-      <div class="team-card fade-in">
-        <img src="../images/shay.png" alt="Team Member 2">
+
+      <div class="profile">
+        <img src="../images/team/advisor.jpg" alt="Dr. Wong">
         <h3>Shehryar Saharan</h3>
-        <p class="team-title">Faculty Advisor (Biocommunications)</p>
-        <p>Provided guidance on the design and a visualization</p>
-        <a href="https://www.ss-design.site" class="team-link">See Website</a>
+        <p>BEng., MScBMC</p>
+        <h4>Faculty Advisor (Biocommunications)</h4>
+        <p>Provided guidance on the design and visualization</p>
+        <a href="https://www.claybiovis.com" class="team-link">See Website</a>
       </div>
-  
-      <div class="team-card fade-in">
-        <img src="../images/wong.png" alt="Team Member 3">
+
+      <div class="profile">
+        <img src="../images/about/Wong.jpg" alt="Dr. Wong">
         <h3>John Wong</h3>
-        <p class="team-title">Content Advisor (Pathologist)</p>
+        <p>MD, FRCPC</p>
+        <h4>Content Advisor (Pathologist)</h4>
         <p>Provided guidance on the accuracy etc etc.</p>
-        <a href="#" class="team-link">See Website</a>
+      </div>
+        
       </div>
     </div>
-  </section>
-  
-  <div class="back-to-top">
-    <a href="#">Back to top &#x25B2;</a>
   </div>
-  
-  <footer>
-    <div class="footer-item">Lorem ipsum</div>
-    <div class="footer-item">Lorem ipsum</div>
-    <div class="footer-item">Lorem ipsum</div>
-  </footer>
-  
-  <script src="../script.js/main.js" defer></script>
+</div>
 
+<div class="back-to-top"><a href="#">Back to top ▲</a></div>
 
+<footer>
+  <p>© 2025 TONO — Created at the University of Toronto MScBMC program</p>
+</footer>
+<script>
+  // Reading progress
+  const prog = document.getElementById('readingProgress');
+document.addEventListener('scroll',()=>{
+  const h=document.documentElement; const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+  prog.style.transform=`scaleX(${Math.min(1,scrolled)})`;
+},{passive:true});
 
+// Menu toggle (same behavior as viewer/compare)
+const menu = document.getElementById('fullScreenMenu');
+const icon = document.getElementById('menuIcon');
+function toggleMenu(){ const on = menu.style.display !== 'flex'; menu.style.display = on ? 'flex' : 'none'; menu.setAttribute('aria-hidden', String(!on)); }
+icon?.addEventListener('click', toggleMenu);
+icon?.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggleMenu(); }});
 
-  
-  </body>
-  </html>
+// Accordion behavior
+document.querySelectorAll('.acc-trigger').forEach(tr => tr.addEventListener('click', () => {
+  const item = tr.closest('.acc-item');
+  const open = item.classList.toggle('open');
+  tr.setAttribute('aria-expanded', open ? 'true' : 'false');
+}));
+
+// Modals
+function openModal(id){ document.getElementById(id+'-modal').style.display='block'; }
+function closeModal(id){ document.getElementById(id+'-modal').style.display='none'; }
+window.openModal=openModal; window.closeModal=closeModal;
+
+// Close on outside click / escape
+window.addEventListener('click', (e)=>{ document.querySelectorAll('.image-modal').forEach(m=>{ if(e.target===m){ m.style.display='none'; }}); });
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.querySelectorAll('.image-modal').forEach(m=> m.style.display='none'); }});
+</script>
+<script src="../script.js/menu.js"></script>
+<script src="menu.js" defer></script>
+</body>
+</html>
